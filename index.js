@@ -1,5 +1,20 @@
 window.onload = async function () {
   const container = document.getElementById("simpson-container");
+  const themeToggle = document.getElementById("themeToggle");
+
+  // Cargar tema guardado
+  const savedTheme = localStorage.getItem("theme") || "light";
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.checked = true;
+  }
+
+  // Event listener para cambiar tema
+  themeToggle.addEventListener("change", function () {
+    document.body.classList.toggle("dark-mode");
+    const theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
+    localStorage.setItem("theme", theme);
+  });
 
   const { results } = await fetchSimpsonsData();
 
