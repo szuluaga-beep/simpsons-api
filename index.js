@@ -36,7 +36,7 @@ window.onload = async function () {
     gender.textContent = `Género: ${character.gender}`;
     
     const characterImage = document.createElement("img");
-    characterImage.src = `https://cdn.thesimpsonsapi.com/500${character.portrait_path}`;
+    characterImage.src = `./assets/unna-med.jpg`;
     characterImage.alt = character.name;
     characterImage.classList.add("character-image");
     
