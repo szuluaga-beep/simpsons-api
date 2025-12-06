@@ -12,7 +12,9 @@ window.onload = async function () {
   // Event listener para cambiar tema
   themeToggle.addEventListener("change", function () {
     document.body.classList.toggle("dark-mode");
-    const theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
+    const theme = document.body.classList.contains("dark-mode")
+      ? "dark"
+      : "light";
     localStorage.setItem("theme", theme);
   });
 
@@ -34,18 +36,18 @@ window.onload = async function () {
     const gender = document.createElement("p");
     gender.classList.add("character-gender");
     gender.textContent = `Género: ${character.gender}`;
-    
+
     const characterImage = document.createElement("img");
-    characterImage.src = `./assets/unna-med.jpg`;
+    characterImage.src = `${getImageUrl(character)}`;
     characterImage.alt = character.name;
     characterImage.classList.add("character-image");
-    
+
     characterDiv.appendChild(characterName);
     characterDiv.appendChild(characterImage);
     characterDiv.appendChild(birthdate);
     characterDiv.appendChild(gender);
     container.appendChild(characterDiv);
-});
+  });
 };
 
 const fetchSimpsonsData = async () => {
@@ -57,4 +59,12 @@ const fetchSimpsonsData = async () => {
   } catch (error) {
     console.error("Error fetching Simpsons data:", error);
   }
+};
+
+const getImageUrl = (character) => {
+  const formattedName = character.name.toLowerCase().replace(/ /g, "-");
+  if (formattedName === "homer-simpson") {
+    return `./assets/homer-simpson.jpg`;
+  }
+  return `https://cdn.thesimpsonsapi.com/500${character.portrait_path}`;
 };
