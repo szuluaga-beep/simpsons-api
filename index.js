@@ -63,8 +63,5 @@ const fetchSimpsonsData = async () => {
 
 const getImageUrl = (character) => {
   const formattedName = character.name.toLowerCase().replace(/ /g, "-");
-  if (formattedName === "homer-simpson") {
-    return `./assets/homer-simpson.jpg`;
-  }
-  return `https://cdn.thesimpsonsapi.com/500${character.portrait_path}`;
+  return `./assets/${formattedName}.jpg`
 };
